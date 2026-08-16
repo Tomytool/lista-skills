@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "debugging-streamlit": {
+      "source": "streamlit/streamlit",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/debugging-streamlit/SKILL.md",
+      "computedHash": "0dc44e0fbc557ea8eba6a81a498102c0979734d4309f4e4e225a58ae9c5641c0"
+    },
+    "developing-with-streamlit": {
+      "source": "streamlit/agent-skills",
+      "sourceType": "github",
+      "skillPath": "developing-with-streamlit/SKILL.md",
+      "computedHash": "128c0acf5db60266b0fb0440c4064fccb7adba0a90d07259b4adddf0e4f39c78"
+    },
+    "streamlit": {
+      "source": "silvainfm/claude-skills",
+      "sourceType": "github",
+      "skillPath": "streamlit/SKILL.md",
+      "computedHash": "949f2a78daaee124512332a11b736fbbe76845a73fb1e7253d45cd81b5caf115"
+    }
+  }
+}
