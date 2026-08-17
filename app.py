@@ -40,8 +40,26 @@ CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR3z_hlX_WkRK2sAfZZkq
 def cargar_datos(url: str) -> pd.DataFrame:
     try:
         df = pd.read_csv(url)
-        # Limpieza básica de espacios en nombres de columnas
-        df.columns = df.columns.str.strip()
+        # Limpieza básica de espacios y minúsculas en nombres de columnas
+        df.columns = df.columns.str.strip().str.lower()
+        
+        # Mapeo de variaciones de nombres de columnas a nombres estándar esperados
+        column_mapping = {
+            'nombre_skills': 'nombre_skill',
+            'llamada_skills': 'como_llamar',
+            'uso_skills': 'usos_posibles',
+            'formato_salida': 'formatos_entrega',
+            'formatos_de_entrega': 'formatos_entrega',
+            'usos': 'usos_posibles',
+        }
+        df = df.rename(columns=column_mapping)
+        
+        # Garantizar presencia de columnas requeridas para evitar KeyErrors
+        columnas_requeridas = ['nombre_skill', 'como_llamar', 'descripcion', 'formatos_entrega', 'usos_posibles']
+        for col in columnas_requeridas:
+            if col not in df.columns:
+                df[col] = ""
+
         # Asegurar que los valores nulos se traten como cadenas vacías para evitar errores en búsquedas
         df = df.fillna("")
         return df
@@ -65,8 +83,8 @@ st.sidebar.markdown("---")
 todos_formatos = set()
 for items in df_raw["formatos_entrega"].dropna():
     if isinstance(items, str):
-        # Separar formatos si vienen delimitados por comas
-        formatos = [f.strip() for f in items.split(",") if f.strip()]
+        # Separar formatos si vienen delimitados por comas o diagonales
+        formatos = [f.strip() for f in items.replace("/", ",").split(",") if f.strip()]
         todos_formatos.update(formatos)
 lista_formatos = sorted(list(todos_formatos))
 
@@ -113,7 +131,7 @@ if formatos_seleccionados:
     def contiene_formato(cadena_formatos):
         if not isinstance(cadena_formatos, str):
             return False
-        return any(fmt in cadena_formatos for fmt in formatos_seleccionados)
+        return any(fmt.lower() in cadena_formatos.lower() for fmt in formatos_seleccionados)
     
     df_filtrado = df_filtrado[df_filtrado["formatos_entrega"].apply(contiene_formato)]
 
