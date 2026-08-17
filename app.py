@@ -33,7 +33,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # URL constante del Google Sheet en formato CSV
-CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQNK4W4fnFkg6v9z61KoY6G38DPZedfXFD7XV_KLYjTG5NsHvOQsUUJNlvt_JbTncmmflu1NxiFte0Z/pub?output=csv"
+CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR3z_hlX_WkRK2sAfZZkqUOii4teKxls4jCIUU0QDO-1mZ2zDfWt_ZowiRFmLRCfUW8t80J4Z2AVN0F/pub?gid=1796871755&single=true&output=csv"
 
 # 2. Función en caché para cargar los datos desde la URL
 @st.cache_data(ttl=600)
