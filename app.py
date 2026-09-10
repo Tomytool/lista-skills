@@ -44,7 +44,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # URL constante del Google Sheet en formato CSV por defecto
-CSV_URL_DEFAULT = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR3z_hlX_WkRK2sAfZZkqUOii4teKxls4jCIUU0QDO-1mZ2zDfWt_ZowiRFmLRCfUW8t80J4Z2AVN0F/pub?gid=1796871755&single=true&output=csv"
+CSV_URL_DEFAULT = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR3z_hlX_WkRK2sAfZZkqUOii4teKxls4jCIUU0QDO-1mZ2zDfWt_ZowiRFmLRCfUW8t80J4Z2AVN0F/pub?gid=485331244&single=true&output=csv"
 
 def transformar_url_google_sheets(url: str) -> str:
     """
